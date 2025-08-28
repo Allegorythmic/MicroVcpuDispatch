@@ -1,0 +1,19 @@
+mode: LOCAL
+input_path: ./data/example.parquet
+output_path: ./outputs
+steps:
+  - name: ingest
+    task: ingest_parquet
+  - name: transform
+    task: apply_transforms
+    params:
+      transforms:
+        - op: select_columns
+          columns: [feature_1, feature_2, target]
+        - op: dropna
+  - name: train
+    task: train_random_forest
+    params:
+      target: target
+  - name: summarize
+    task: summarize_results
