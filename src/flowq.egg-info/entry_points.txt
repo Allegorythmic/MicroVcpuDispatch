@@ -1,0 +1,2 @@
+[console_scripts]
+flowq = flowq.cli:main
